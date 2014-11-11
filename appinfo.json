@@ -1,13 +1,21 @@
 {
-    "appKeys": {},
+    "appKeys": {
+        "KEY_SPEED": 0
+    },
     "capabilities": [
-        ""
+        "location"
     ],
     "companyName": "john@housser.ca",
     "longName": "Yacht Racing",
     "projectType": "native",
     "resources": {
         "media": [
+            {
+                "file": "images/icon.png",
+                "menuIcon": true,
+                "name": "icon",
+                "type": "png"
+            },
             {
                 "characterRegex": "[0-9:. -]",
                 "file": "fonts/pixelmix.ttf",
@@ -43,12 +51,6 @@
                 "file": "fonts/Avenir.ttf",
                 "name": "FONT_AVENIR_30",
                 "type": "font"
-            },
-            {
-                "file": "images/icon.png",
-                "menuIcon": true,
-                "name": "icon",
-                "type": "png"
             }
         ]
     },

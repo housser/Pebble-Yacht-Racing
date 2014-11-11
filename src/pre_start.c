@@ -9,6 +9,7 @@ static GFont s_res_font_avenir_50;
 static GFont s_res_pixelmix_16;
 static TextLayer *timer_layer;
 static TextLayer *time_layer;
+static TextLayer *speed_layer;
 
 static void initialise_ui(void) {
   s_window = window_create();
@@ -32,12 +33,18 @@ static void initialise_ui(void) {
   text_layer_set_text_alignment(time_layer, GTextAlignmentCenter);
   text_layer_set_font(time_layer, s_res_pixelmix_16);
   layer_add_child(window_get_root_layer(s_window), (Layer *)time_layer);
+  
+  // speed_layer
+  speed_layer = text_layer_create(GRect(22, 127, 100, 20));
+  text_layer_set_text(speed_layer, "10 kts");
+  layer_add_child(window_get_root_layer(s_window), (Layer *)speed_layer);
 }
 
 static void destroy_ui(void) {
   window_destroy(s_window);
   text_layer_destroy(timer_layer);
   text_layer_destroy(time_layer);
+  text_layer_destroy(speed_layer);
   fonts_unload_custom_font(s_res_font_avenir_50);
   fonts_unload_custom_font(s_res_pixelmix_16);
 }

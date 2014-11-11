@@ -7,25 +7,17 @@
 static Window *s_window;
 static GFont s_res_roboto_condensed_21;
 static GFont s_res_pixelmix_16;
-static TextLayer *speed_layer;
 static TextLayer *timer_layer;
 static TextLayer *time_layer;
+static TextLayer *speed_layer;
 
 static void initialise_ui(void) {
   s_window = window_create();
   window_set_background_color(s_window, GColorBlack);
-  window_set_fullscreen(s_window, true);
+  window_set_fullscreen(s_window, 1);
   
   s_res_roboto_condensed_21 = fonts_get_system_font(FONT_KEY_ROBOTO_CONDENSED_21);
   s_res_pixelmix_16 = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_PIXELMIX_16));
-  // speed_layer
-  speed_layer = text_layer_create(GRect(10, 61, 124, 24));
-  text_layer_set_background_color(speed_layer, GColorClear);
-  text_layer_set_text_color(speed_layer, GColorWhite);
-  text_layer_set_text(speed_layer, "10kts");
-  text_layer_set_font(speed_layer, s_res_roboto_condensed_21);
-  layer_add_child(window_get_root_layer(s_window), (Layer *)speed_layer);
-  
   // timer_layer
   timer_layer = text_layer_create(GRect(10, 31, 124, 24));
   text_layer_set_background_color(timer_layer, GColorClear);
@@ -40,13 +32,18 @@ static void initialise_ui(void) {
   text_layer_set_text_alignment(time_layer, GTextAlignmentCenter);
   text_layer_set_font(time_layer, s_res_pixelmix_16);
   layer_add_child(window_get_root_layer(s_window), (Layer *)time_layer);
+  
+  // speed_layer
+  speed_layer = text_layer_create(GRect(20, 77, 100, 20));
+  text_layer_set_text(speed_layer, "10 kts");
+  layer_add_child(window_get_root_layer(s_window), (Layer *)speed_layer);
 }
 
 static void destroy_ui(void) {
   window_destroy(s_window);
-  text_layer_destroy(speed_layer);
   text_layer_destroy(timer_layer);
   text_layer_destroy(time_layer);
+  text_layer_destroy(speed_layer);
   fonts_unload_custom_font(s_res_pixelmix_16);
 }
 // END AUTO-GENERATED UI CODE
